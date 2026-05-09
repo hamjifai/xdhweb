@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stream Rise high Rise by Xdinary Heroes</title>
+
+  <style>
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    /* ENTER SCREEN */
+
+    #enter-screen {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    #enter-screen button {
+      padding: 20px 50px;
+      font-size: 35px;
+      background: hotpink;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 25px hotpink;
+      transition: 0.3s;
+    }
+
+    .enter-title {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      font-size: 50px;
+      color: white;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px hotpink;
+      animation: floatTitle 3s ease-in-out infinite;
+    }
+    @keyframes floatTitle {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -8px); }
+    }
+
+    #enter-screen button:hover {
+      transform: scale(1.1);
+    }
+
+    /* MAIN CONTENT (smooth fade in = no flicker) */
+
+    #main-content {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    #main-content.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 50px;
+      text-shadow: 0 0 10px hotpink;
+    }
+
+    /* WRAPPER (NO ANIMATION HERE) */
+
+    .record-wrapper {
+      width: 350px;
+      height: 350px;
+      margin: 50px auto;
+      position: relative;
+      filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.4));
+    }
+
+    /* INNER SPINNER (ONLY THIS ROTATES) */
+
+    .record-spin {
+      width: 100%;
+      height: 100%;
+      animation: spin 8s linear infinite;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    /* RECORD */
+
+    .record {
+      width: 100%;
+      height: 100%;
+      background: black;
+      border-radius: 50%;
+      border: 10px solid #111;
+      position: relative;
+      box-shadow: 0 0 15px hotpink;
+    }
+
+    /* ALBUM COVER */
+
+    .album {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* SPIN ANIMATION */
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    /* STARS BACKGROUND */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 1;
+      animation: floatStar linear infinite;
+    }
+
+    @keyframes floatStar {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+
+    body {
+      font-family: Quicksand, sans-serif;
+    }
+
+    .equalizer {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      height: 40px;
+      margin-top: 10px;
+      align-items: flex-end;
+    }
+
+    .equalizer div {
+      width: 4px;
+      height: 12px;
+      background: hotpink;
+      border-radius: 3px;
+      animation: bounce 1s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { height: 8px;
+      opacity: 0.4; }
+      50% { height: 35px; 
+      opacity: 1;}
+    }
+
+    .equalizer div:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .equalizer div:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+    .equalizer div:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+    .equalizer div:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+    .equalizer div:nth-child(5) {
+      animation-delay: 0.4s;
+    }
+    .equalizer div:nth-child(6) {
+      animation-delay: 0.5s;
+    }
+    .equalizer div:nth-child(7) {
+      animation-delay: 0.6s;
+    }
+
+    body {
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      color: rgb(255, 202, 229);
+      text-shadow: 0 0 5px hotpink;
+      pointer-events: none;
+    }
+
+    .album-name {
+      font-size: 14px;
+      margin-top: 10px;
+      color: rgb(255, 234, 244);
+      text-shadow: 0 0 5px hotpink;
+    }
+
+  </style>
+
+  <div class="footer">
+    stan xdinary heroes now or else...
+  </div>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class=stars></div>
+  <!-- ENTER SCREEN -->
+  <div id="enter-screen">
+    <h2 class="enter-title">Welcome!</h2>
+    <button onclick="enterSite()">villains may enter...</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="main-content">
+
+    <h1>NOW PLAYING ♬ ﾟ.</h1>
+
+    <div class="equalizer">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="record-wrapper">
+      <div class="record-spin">
+        <div class="record">
+          <img class="album" src="album.jpg" alt="Album Cover">
+        </div>
+      </div>
+    </div>
+
+    <p class="album-name">Xdinary Heroes - Rise high Rise</p>
+
+    <audio id="music" loop>
+      <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+  </div>
+
+  <script>
+    console.log("stars script running");
+    
+    function enterSite() {
+      document.getElementById("enter-screen").style.display = "none";
+      document.getElementById("main-content").classList.add("show");
+      document.getElementById("music").play();
+    }
+
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = Math.random() * 100 + 'vw';
+
+      let size = Math.random() * 2 + 1;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+
+      star.style.animationDuration = (Math.random() * 5 + 3) + 's';
+      star.style.opacity = Math.random();
+      starsContainer.appendChild(star);
+    }
+
+</script>
+
+</body>
+</html>
